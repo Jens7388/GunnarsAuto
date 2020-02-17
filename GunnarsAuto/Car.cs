@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GunnarsAuto
 {
-    class Car
+    public class Car
     {
         public int carId;
         public string make;

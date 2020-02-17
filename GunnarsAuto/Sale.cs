@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GunnarsAuto
 {
-    class Sale
+    public class Sale
     {
         public int saleId;
         public int transactionAmount;

@@ -56,11 +56,11 @@ namespace GunnarsAuto
             }
             return cars;
         }
-        /*
-        public List<SalesPerson> GetAllSalesPersons()
+        
+        public List<Sale> GetAllSales()
         {
-            List<SalesPerson> salesPersons = new List<SalesPerson>();
-            string sql = "SELECT * FROM salesPersons";
+            List<Sale> sales = new List<Sale>();
+            string sql = "SELECT * FROM Sales";
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
@@ -68,15 +68,16 @@ namespace GunnarsAuto
 
             while(reader.Read())
             {
+                int saleId = (int)reader["SaleId"];
+                int transactionAmount = (int)reader["TransactionAmount"];
+                string saleType = (string)reader["SaleType"];
                 int salesPersonId = (int)reader["SalesPersonId"];
-                string firstname = (string)reader["Firstname"];
-                string lastname = (string)reader["Lastname"];
-                string initials = (string)reader["Initials"];
+                int carId = (int)reader["CarId"];
 
-                SalesPerson salesPerson = new SalesPerson(salesPersonId, firstname, lastname, initials);
-                salesPersons.Add(salesPerson);
+                Sale sale = new Sale(saleId, transactionAmount, saleType, salesPersonId, carId);
+                sales.Add(sale);
             }
-            return salesPersons;
-        }*/
+            return sales;
+        }
     }
 }
