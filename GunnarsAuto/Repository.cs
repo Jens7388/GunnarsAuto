@@ -77,7 +77,31 @@ namespace GunnarsAuto
                 Sale sale = new Sale(saleId, transactionAmount, saleType, salesPersonId, carId);
                 sales.Add(sale);
             }
+            connection.Close();
             return sales;
+        }
+        public void AddSalesPerson(SalesPerson salesPerson)
+        {
+            string sql = $"INSERT INTO SalesPersons VALUES('{salesPerson.Firstname}','{salesPerson.Lastname}', '{salesPerson.Initials}')";
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public void AddCar(Car car)
+        {
+            string sql = $"INSERT INTO Car VALUES('{car.Make}', '{car.Model}', " +
+                $"'{car.ChassisNumber}', '{car.RegistrationNumber}', '{car.CarType}')";
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public void AddSale(Sale sale)
+        {
+            string sql = $"INSERT INTO Sale VALUES('{sale.TransactionAmount}', '{sale.SaleType}', '{sale.SalesPersonId}', '{sale.CarId}')";
         }
     }
 }
