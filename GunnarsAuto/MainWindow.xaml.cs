@@ -20,6 +20,7 @@ namespace GunnarsAuto
     /// </summary>
     public partial class MainWindow: Window
     {
+        private ViewModel viewModel;
         private static void LoadTables()
         {
             Repository.GetAllSalesPersons();
@@ -53,7 +54,10 @@ namespace GunnarsAuto
         public MainWindow()
         {
             InitializeComponent();
-            LoadTables();        
+            LoadTables();
+
+            viewModel = new ViewModel();
+            DataContext = viewModel;
         }
     }
 }

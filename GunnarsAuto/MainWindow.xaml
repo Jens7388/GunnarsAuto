@@ -8,5 +8,41 @@
         Title="MainWindow"
         Height="450"
         Width="800">
-    <Grid />
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <GroupBox x:Name="groupBoxSelectSalesPerson"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="3"
+                  Grid.RowSpan="3"
+                  BorderBrush="Black"
+                  BorderThickness="2">
+            <ListView x:Name="listViewSelectSalesPerson"
+                      ItemsSource="{Binding SalesPersons}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Vælg en salgsperson:"
+                                        Width="125"
+                                        DisplayMemberBinding="{Binding Firstname}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            
+        </GroupBox>
+        
+    </Grid>
 </Window>
