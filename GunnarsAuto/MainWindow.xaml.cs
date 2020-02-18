@@ -20,12 +20,10 @@ namespace GunnarsAuto
     /// </summary>
     public partial class MainWindow: Window
     {
-        public MainWindow()
+        private static void LoadTables()
         {
-            InitializeComponent();
-
             Repository.GetAllSalesPersons();
-            if(Repository.GetAllSalesPersons().Count != 0)
+            if(Repository.salesPersons.Count != 0)
             {
                 MessageBox.Show("Alle salgspersoner hentet!");
             }
@@ -34,7 +32,7 @@ namespace GunnarsAuto
                 MessageBox.Show("Kunne ikke hente salgspersonerne! Tjek koden og prøv igen");
             }
             Repository.GetAllCars();
-            if(Repository.GetAllCars().Count != 0)
+            if(Repository.cars.Count != 0)
             {
                 MessageBox.Show("Alle biler hentet!");
             }
@@ -43,7 +41,7 @@ namespace GunnarsAuto
                 MessageBox.Show("Kunne ikke hente bilerne! Tjek koden og prøv igen");
             }
             Repository.GetAllSales();
-            if(Repository.GetAllSales().Count != 0)
+            if(Repository.sales.Count != 0)
             {
                 MessageBox.Show("Alle salg hentet!");
             }
@@ -51,6 +49,11 @@ namespace GunnarsAuto
             {
                 MessageBox.Show("Kunne ikke hente salgene! Tjek koden og prøv igen");
             }
+        }
+        public MainWindow()
+        {
+            InitializeComponent();
+            LoadTables();        
         }
     }
 }

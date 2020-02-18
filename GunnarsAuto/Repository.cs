@@ -7,6 +7,10 @@ namespace GunnarsAuto
 {
     public class Repository
     {
+        public static List<SalesPerson> salesPersons = new List<SalesPerson>();
+        public static List<Car> cars = new List<Car>();
+        public static List<Sale> sales = new List<Sale>();
+
         private const string connectionString = @"
             Data Source=(localdb)\mssqllocaldb;
             Initial Catalog=GunnarsAutoDB;
@@ -14,7 +18,7 @@ namespace GunnarsAuto
             ";
         public static List<SalesPerson> GetAllSalesPersons()
         {
-            List<SalesPerson> salesPersons = new List<SalesPerson>();
+            salesPersons = new List<SalesPerson>();
             string sql = "SELECT * FROM SalesPersons";
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(sql, connection);
@@ -31,11 +35,12 @@ namespace GunnarsAuto
                 SalesPerson salesPerson = new SalesPerson(salesPersonId, firstname, lastname, initials);
                 salesPersons.Add(salesPerson);
             }
+            connection.Close();
             return salesPersons;
         }
         public static List<Car> GetAllCars()
         {
-            List<Car> cars = new List<Car>();
+            cars = new List<Car>();
             string sql = "SELECT * FROM Car";
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(sql, connection);
@@ -54,12 +59,13 @@ namespace GunnarsAuto
                 Car car = new Car(carId, make, model, chassisNumber, registrationNumber, carType);
                 cars.Add(car);
             }
+            connection.Close();
             return cars;
         }
         
         public static List<Sale> GetAllSales()
         {
-            List<Sale> sales = new List<Sale>();
+            sales = new List<Sale>();
             string sql = "SELECT * FROM Sale";
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(sql, connection);
@@ -102,6 +108,11 @@ namespace GunnarsAuto
         public void AddSale(Sale sale)
         {
             string sql = $"INSERT INTO Sale VALUES('{sale.TransactionAmount}', '{sale.SaleType}', '{sale.SalesPersonId}', '{sale.CarId}')";
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }
