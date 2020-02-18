@@ -23,6 +23,34 @@ namespace GunnarsAuto
         public MainWindow()
         {
             InitializeComponent();
+
+            Repository.GetAllSalesPersons();
+            if(Repository.GetAllSalesPersons().Count != 0)
+            {
+                MessageBox.Show("Alle salgspersoner hentet!");
+            }
+            else
+            {
+                MessageBox.Show("Kunne ikke hente salgspersonerne! Tjek koden og prøv igen");
+            }
+            Repository.GetAllCars();
+            if(Repository.GetAllCars().Count != 0)
+            {
+                MessageBox.Show("Alle biler hentet!");
+            }
+            else
+            {
+                MessageBox.Show("Kunne ikke hente bilerne! Tjek koden og prøv igen");
+            }
+            Repository.GetAllSales();
+            if(Repository.GetAllSales().Count != 0)
+            {
+                MessageBox.Show("Alle salg hentet!");
+            }
+            else
+            {
+                MessageBox.Show("Kunne ikke hente salgene! Tjek koden og prøv igen");
+            }
         }
     }
 }

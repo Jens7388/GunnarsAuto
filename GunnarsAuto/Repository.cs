@@ -12,7 +12,7 @@ namespace GunnarsAuto
             Initial Catalog=GunnarsAutoDB;
             Integrated Security = True;         
             ";
-        public List<SalesPerson> GetAllSalesPersons()
+        public static List<SalesPerson> GetAllSalesPersons()
         {
             List<SalesPerson> salesPersons = new List<SalesPerson>();
             string sql = "SELECT * FROM SalesPersons";
@@ -33,7 +33,7 @@ namespace GunnarsAuto
             }
             return salesPersons;
         }
-        public List<Car> GetAllCars()
+        public static List<Car> GetAllCars()
         {
             List<Car> cars = new List<Car>();
             string sql = "SELECT * FROM Car";
@@ -57,10 +57,10 @@ namespace GunnarsAuto
             return cars;
         }
         
-        public List<Sale> GetAllSales()
+        public static List<Sale> GetAllSales()
         {
             List<Sale> sales = new List<Sale>();
-            string sql = "SELECT * FROM Sales";
+            string sql = "SELECT * FROM Sale";
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
