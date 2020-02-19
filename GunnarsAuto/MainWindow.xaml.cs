@@ -59,5 +59,33 @@ namespace GunnarsAuto
             viewModel = new ViewModel();
             DataContext = viewModel;
         }
+        public void SalesPersonSelected(object sender, SelectionChangedEventArgs e)
+        {
+            SalesPerson salesPerson = dataGridSelectSalesPerson.SelectedItem as SalesPerson;
+            viewModel.SelectedSalesPerson = salesPerson;
+        }
+        public void buttonSelectSalesPerson_Click(object sender, RoutedEventArgs e)
+        {
+            if(viewModel.SelectedSalesPerson == null)
+            {
+                MessageBox.Show("Du mangler at vælge en salgsperson!");
+            }
+            else
+            {
+                groupBoxSelectSalesPerson.Visibility=Visibility.Hidden;
+                groupBoxAddCarOrSale.Visibility = Visibility.Visible;
+                columnSalesPerson.Header = $"Velkommen, {viewModel.SelectedSalesPerson.Firstname}";
+            }
+        }
+
+        public void buttonAddCar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void buttonPutCarOnSale_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

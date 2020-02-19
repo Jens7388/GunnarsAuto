@@ -36,6 +36,7 @@ namespace GunnarsAuto
                 salesPersons.Add(salesPerson);
             }
             connection.Close();
+            command.Dispose();
             return salesPersons;
         }
         public static List<Car> GetAllCars()
@@ -60,6 +61,7 @@ namespace GunnarsAuto
                 cars.Add(car);
             }
             connection.Close();
+            command.Dispose();
             return cars;
         }
         
@@ -84,6 +86,7 @@ namespace GunnarsAuto
                 sales.Add(sale);
             }
             connection.Close();
+            command.Dispose();
             return sales;
         }
         public static void AddSalesPerson(SalesPerson salesPerson)
@@ -94,6 +97,7 @@ namespace GunnarsAuto
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
+            command.Dispose();
         }
         public static void AddCar(Car car)
         {
@@ -104,6 +108,7 @@ namespace GunnarsAuto
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
+            command.Dispose();
         }
         public static void AddSale(Sale sale)
         {
@@ -113,6 +118,7 @@ namespace GunnarsAuto
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
+            command.Dispose();
         }
         public static void UpdateSalesPerson(SalesPerson salesPerson)
         {
@@ -123,6 +129,7 @@ namespace GunnarsAuto
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
+            command.Dispose();
         }
         public static void UpdateCar(Car car)
         {
@@ -134,6 +141,7 @@ namespace GunnarsAuto
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
+            command.Dispose();
         }
         public static void UpdateSale(Sale sale)
         {
@@ -144,6 +152,7 @@ namespace GunnarsAuto
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
+            command.Dispose();
         }
     }
 }
