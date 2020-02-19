@@ -86,7 +86,7 @@ namespace GunnarsAuto
             connection.Close();
             return sales;
         }
-        public void AddSalesPerson(SalesPerson salesPerson)
+        public static void AddSalesPerson(SalesPerson salesPerson)
         {
             string sql = $"INSERT INTO SalesPersons VALUES('{salesPerson.Firstname}','{salesPerson.Lastname}', '{salesPerson.Initials}')";
             SqlConnection connection = new SqlConnection(connectionString);
@@ -95,7 +95,7 @@ namespace GunnarsAuto
             command.ExecuteNonQuery();
             connection.Close();
         }
-        public void AddCar(Car car)
+        public static void AddCar(Car car)
         {
             string sql = $"INSERT INTO Car VALUES('{car.Make}', '{car.Model}', " +
                 $"'{car.ChassisNumber}', '{car.RegistrationNumber}', '{car.CarType}')";
@@ -105,9 +105,40 @@ namespace GunnarsAuto
             command.ExecuteNonQuery();
             connection.Close();
         }
-        public void AddSale(Sale sale)
+        public static void AddSale(Sale sale)
         {
             string sql = $"INSERT INTO Sale VALUES('{sale.TransactionAmount}', '{sale.SaleType}', '{sale.SalesPersonId}', '{sale.CarId}')";
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public static void UpdateSalesPerson(SalesPerson salesPerson)
+        {
+            string sql = $"UPDATE Salespersons SET Firstname = '{salesPerson.Firstname}', Lastname = '{salesPerson.Lastname}'," +
+            $" Initials = '{salesPerson.Initials}' WHERE SalesPersonId = '{salesPerson.salesPersonId}'";
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public static void UpdateCar(Car car)
+        {
+            string sql = $"UPDATE Car SET Make = '{car.Make}', Model = '{car.Model}'," +
+            $" ChassisNumber = '{car.ChassisNumber}', RegistrationNumber = '{car.RegistrationNumber}', CarType = '{car.CarType}' " +
+            $"WHERE CarId = '{car.CarId}'";
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public static void UpdateSale(Sale sale)
+        {
+            string sql = $"UPDATE Sale SET TransactionAmount = '{sale.TransactionAmount}', SaleType = '{sale.SaleType}'," +
+            $" SalesPersonId = '{sale.SalesPersonId}', CarId = '{sale.CarId}' WHERE SaleId = '{sale.SaleId}'";
             SqlConnection connection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();

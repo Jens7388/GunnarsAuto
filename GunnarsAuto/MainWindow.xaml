@@ -31,16 +31,17 @@
                   Grid.RowSpan="3"
                   BorderBrush="Black"
                   BorderThickness="2">
-            <ListView x:Name="listViewSelectSalesPerson"
-                      ItemsSource="{Binding SalesPersons}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Vælg en salgsperson:"
+            <DataGrid x:Name="listViewSelectSalesPerson"
+                      ItemsSource="{Binding SalesPersons}"
+                      SelectedItem="{Binding SelectedSalesPerson}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Vælg en salgsperson:"
                                         Width="125"
-                                        DisplayMemberBinding="{Binding Firstname}" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
+                                        Binding="{Binding Firstname}" />
+                </DataGrid.Columns> 
+            </DataGrid>
             
         </GroupBox>
         
