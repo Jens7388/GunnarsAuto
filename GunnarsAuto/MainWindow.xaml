@@ -34,7 +34,7 @@
             <StackPanel>
                 <DataGrid x:Name="dataGridSelectSalesPerson"
                           ItemsSource="{Binding SalesPersons}"
-                          SelectionChanged="SalesPersonSelected"
+                          SelectionChanged="SalesPersonSelectionChanged"
                           SelectedItem="{Binding SelectedSalesPerson}"
                           AutoGenerateColumns="False"
                           Height="218"
@@ -60,8 +60,11 @@
                   BorderBrush="Black"
                   BorderThickness="2">
             <StackPanel>
-                <DataGrid Height="200"
+                <DataGrid x:Name="dataGridSelectedCar"
+                          Height="198"
                           ItemsSource="{Binding Cars}"
+                          SelectionChanged="CarSelectionChanged"
+                          SelectedItem="{Binding SelectedCar}"
                           Margin="0,4,0,0"
                           IsReadOnly="True">
                     <DataGrid.Columns>

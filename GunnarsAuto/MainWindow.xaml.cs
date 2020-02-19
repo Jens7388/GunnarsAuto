@@ -59,7 +59,7 @@ namespace GunnarsAuto
             viewModel = new ViewModel();
             DataContext = viewModel;
         }
-        public void SalesPersonSelected(object sender, SelectionChangedEventArgs e)
+        public void SalesPersonSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SalesPerson salesPerson = dataGridSelectSalesPerson.SelectedItem as SalesPerson;
             viewModel.SelectedSalesPerson = salesPerson;
@@ -86,6 +86,12 @@ namespace GunnarsAuto
         public void buttonPutCarOnSale_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void CarSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Car car = dataGridSelectedCar.SelectedItem as Car;
+            viewModel.SelectedCar = car;
         }
     }
 }
