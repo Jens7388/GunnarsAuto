@@ -57,7 +57,7 @@ namespace GunnarsAuto
                 string registrationNumber = (string)reader["RegistrationNumber"];
                 string carType = (string)reader["CarType"];
 
-                Car car = new Car(carId, make, model, chassisNumber, registrationNumber, carType);
+                Car car = new Car(make, model, chassisNumber, registrationNumber, carType);
                 cars.Add(car);
             }
             connection.Close();
@@ -99,17 +99,7 @@ namespace GunnarsAuto
             connection.Close();
             command.Dispose();
         }
-        public static void AddCar(Car car)
-        {
-            string sql = $"INSERT INTO Car VALUES('{car.Make}', '{car.Model}', " +
-                $"'{car.ChassisNumber}', '{car.RegistrationNumber}', '{car.CarType}')";
-            SqlConnection connection = new SqlConnection(connectionString);
-            SqlCommand command = new SqlCommand(sql, connection);
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
-            command.Dispose();
-        }
+        
         public static void AddSale(Sale sale)
         {
             string sql = $"INSERT INTO Sale VALUES('{sale.TransactionAmount}', '{sale.SaleType}', '{sale.SalesPersonId}', '{sale.CarId}')";
@@ -131,7 +121,7 @@ namespace GunnarsAuto
             connection.Close();
             command.Dispose();
         }
-        public static void UpdateCar(Car car)
+       /* public static void UpdateCar(Car car)
         {
             string sql = $"UPDATE Car SET Make = '{car.Make}', Model = '{car.Model}'," +
             $" ChassisNumber = '{car.ChassisNumber}', RegistrationNumber = '{car.RegistrationNumber}', CarType = '{car.CarType}' " +
@@ -142,7 +132,7 @@ namespace GunnarsAuto
             command.ExecuteNonQuery();
             connection.Close();
             command.Dispose();
-        }
+        }*/
         public static void UpdateSale(Sale sale)
         {
             string sql = $"UPDATE Sale SET TransactionAmount = '{sale.TransactionAmount}', SaleType = '{sale.SaleType}'," +

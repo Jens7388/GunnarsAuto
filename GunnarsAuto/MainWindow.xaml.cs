@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,11 @@ namespace GunnarsAuto
     /// </summary>
     public partial class MainWindow: Window
     {
+        private const string connectionString = @"
+            Data Source=(localdb)\mssqllocaldb;
+            Initial Catalog=GunnarsAutoDB;
+            Integrated Security = True;         
+            ";
         private ViewModel viewModel;
         private static void LoadTables()
         {
@@ -72,15 +78,38 @@ namespace GunnarsAuto
             }
             else
             {
-                groupBoxSelectSalesPerson.Visibility=Visibility.Hidden;
-                groupBoxAddCarOrSale.Visibility = Visibility.Visible;
-                columnSalesPerson.Header = $"Velkommen, {viewModel.SelectedSalesPerson.Firstname}";
+                groupBoxSelectSalesPerson.Visibility = Visibility.Hidden;
+                groupBoxCars.Visibility = Visibility.Visible;
+                groupBoxAddNewCar.Visibility = Visibility.Visible;
+                textBlockSalesPerson.Text = $"Velkommen, {viewModel.SelectedSalesPerson.Firstname}";
             }
         }
-
         public void buttonAddCar_Click(object sender, RoutedEventArgs e)
         {
+            if(textBoxCarChassisNumber.Text == null || textBoxCarMake.Text == null || textBoxCarModel.Text == null ||
+                textBoxCarRegistrationNumber.Text == null || textBoxCarStatus.Text == null)
+            {
+                MessageBox.Show("Du mangler at udfylde et felt!");
+            }
+            else if(textBoxCarStatus.Text!= "used" && textBoxCarStatus.Text != "new")
+            {
+                MessageBox.Show("Bilens status skal være enten 'used' eller 'new'!");
+            }
+            else
+            {
+                Car car = new Car(textBoxCarMake.Text, textBoxCarModel.Text,
+                    textBoxCarChassisNumber.Text, textBoxCarRegistrationNumber.Text, textBoxCarStatus.Text);
 
+                string sql = $"INSERT INTO Car VALUES('{car.Make}', '{car.Model}', " +
+                   $"'{car.ChassisNumber}', '{car.RegistrationNumber}', '{car.CarType}')";
+                SqlConnection connection = new SqlConnection(connectionString);
+                SqlCommand command = new SqlCommand(sql, connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+                command.Dispose();
+                viewModel.Cars.Add(car);
+            }
         }
 
         public void buttonPutCarOnSale_Click(object sender, RoutedEventArgs e)
