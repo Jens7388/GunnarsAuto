@@ -67,7 +67,7 @@ namespace GunnarsAuto
         }
         public void SalesPersonSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SalesPerson salesPerson = dataGridSelectSalesPerson.SelectedItem as SalesPerson;
+            SalesPerson salesPerson = comboBoxSelectSalesPerson.SelectedItem as SalesPerson;
             viewModel.SelectedSalesPerson = salesPerson;
         }
         public void buttonSelectSalesPerson_Click(object sender, RoutedEventArgs e)
@@ -87,18 +87,14 @@ namespace GunnarsAuto
         public void buttonAddCar_Click(object sender, RoutedEventArgs e)
         {
             if(textBoxCarChassisNumber.Text == null || textBoxCarMake.Text == null || textBoxCarModel.Text == null ||
-                textBoxCarRegistrationNumber.Text == null || textBoxCarStatus.Text == null)
+                textBoxCarRegistrationNumber.Text == null || ComboboxCarStatus.SelectedItem == null)
             {
                 MessageBox.Show("Du mangler at udfylde et felt!");
-            }
-            else if(textBoxCarStatus.Text!= "used" && textBoxCarStatus.Text != "new")
-            {
-                MessageBox.Show("Bilens status skal være enten 'used' eller 'new'!");
             }
             else
             {
                 Car car = new Car(textBoxCarMake.Text, textBoxCarModel.Text,
-                    textBoxCarChassisNumber.Text, textBoxCarRegistrationNumber.Text, textBoxCarStatus.Text);
+                    textBoxCarChassisNumber.Text, textBoxCarRegistrationNumber.Text, ComboboxCarStatus.Text);
 
                 string sql = $"INSERT INTO Car VALUES('{car.Make}', '{car.Model}', " +
                    $"'{car.ChassisNumber}', '{car.RegistrationNumber}', '{car.CarType}')";

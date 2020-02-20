@@ -25,27 +25,24 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <GroupBox x:Name="groupBoxSelectSalesPerson"
-                  Grid.Row="1"
+                  Grid.Row="2"
                   Grid.Column="1"
                   Grid.ColumnSpan="3"
-                  Grid.RowSpan="3"
+                  Grid.RowSpan="2"
                   BorderBrush="Black"
                   BorderThickness="2">
             <StackPanel>
-                <DataGrid x:Name="dataGridSelectSalesPerson"
+                <TextBlock Text="Vælg en salgsperson:"
+                           FontSize="15"/>
+                <ComboBox x:Name="comboBoxSelectSalesPerson"
                           ItemsSource="{Binding SalesPersons}"
                           SelectionChanged="SalesPersonSelectionChanged"
                           SelectedItem="{Binding SelectedSalesPerson}"
-                          AutoGenerateColumns="False"
-                          Height="218"
+                          Height="50"
+                          DisplayMemberPath="Firstname"
                           Margin="0,4,0,0"
                           IsReadOnly="True">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Vælg en salgsperson:"
-                                            Width="451"
-                                            Binding="{Binding Firstname}" />
-                    </DataGrid.Columns>
-                </DataGrid>
+                </ComboBox>
                 <Button x:Name="buttonSelectSalesPerson"
                         Click="buttonSelectSalesPerson_Click">Gå Videre</Button>
             </StackPanel>
@@ -69,7 +66,6 @@
                           Margin="0,4,0,0"
                           Grid.ColumnSpan="3"
                           IsReadOnly="True">
-
                 </DataGrid>
 
                 <Button x:Name="buttonPutCarOnSale"
@@ -102,9 +98,12 @@
                 <TextBlock Text="Registreringsnr:"
                            FontSize="15" />
                 <TextBox x:Name="textBoxCarRegistrationNumber" />
-                <TextBlock Text="Bilstatus: (used/new)"
+                <TextBlock Text="Bilstatus:"
                            FontSize="15" />
-                <TextBox x:Name="textBoxCarStatus" />
+                <ComboBox x:Name="ComboboxCarStatus">
+                    <ComboBoxItem Content="used" />
+                    <ComboBoxItem Content="new"/>
+                </ComboBox>
                 <Button x:Name="buttonAddCar"
                         Click="buttonAddCar_Click">Opret bil
                 </Button>
