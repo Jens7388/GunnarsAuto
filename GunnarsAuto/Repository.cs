@@ -63,8 +63,7 @@ namespace GunnarsAuto
             connection.Close();
             command.Dispose();
             return cars;
-        }
-        
+        }     
         public static List<Sale> GetAllSales()
         {
             sales = new List<Sale>();
@@ -98,8 +97,7 @@ namespace GunnarsAuto
             command.ExecuteNonQuery();
             connection.Close();
             command.Dispose();
-        }
-        
+        }     
         public static void AddSale(Sale sale)
         {
             string sql = $"INSERT INTO Sale VALUES('{sale.TransactionAmount}', '{sale.SaleType}', '{sale.SalesPersonId}', '{sale.CarId}')";

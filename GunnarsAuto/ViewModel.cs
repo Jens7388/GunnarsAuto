@@ -7,11 +7,8 @@ namespace GunnarsAuto
 {
     public class ViewModel
     {
-        private Repository repository;
-
         public ViewModel()
         {
-            repository = new Repository();
             List<SalesPerson> salesPersons = Repository.GetAllSalesPersons();
             List<Car> cars = Repository.GetAllCars();
             List<Sale> sales = Repository.GetAllSales();
@@ -19,14 +16,11 @@ namespace GunnarsAuto
             Cars = new ObservableCollection<Car>(cars);
             Sales = new ObservableCollection<Sale>(sales);
         }
-
         public ObservableCollection<SalesPerson> SalesPersons { get; set; }
         public ObservableCollection<Car> Cars { get; set; }
         public ObservableCollection<Sale> Sales { get; set; }
-
         public SalesPerson SelectedSalesPerson { get; set; }
         public Car SelectedCar { get; set; }
         public Sale SelectedSale { get; set; }
-
     }
 }

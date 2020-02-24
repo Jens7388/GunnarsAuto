@@ -107,12 +107,10 @@ namespace GunnarsAuto
                 viewModel.Cars.Add(car);
             }
         }
-
         public void buttonPutCarOnSale_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
         private void CarSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Car car = dataGridSelectedCar.SelectedItem as Car;
